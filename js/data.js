@@ -5,17 +5,18 @@
     var datepicker= {};
     datepicker.getMonthData = function(year, month){
         var ret = [];
+        //未提供year或month，则使用今天日期
         if(year === undefined|| month === undefined){
             var today = new Date();
             year = today.getFullYear();
             month = today.getMonth()+1;
         }
+
         var firstDay = new Date(year, month-1, 1);
         var firstDayWeekDay = firstDay.getDay();
         if(firstDayWeekDay === 0){
             firstDayWeekDay = 7;
         }
-
         year = firstDay.getFullYear();
         month = firstDay.getMonth() + 1;
 
@@ -58,7 +59,6 @@
             days: ret
         };
     };
-
 
     window.datepicker = datepicker;
 })();

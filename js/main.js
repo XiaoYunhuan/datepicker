@@ -86,11 +86,9 @@
                 return;
             }
             if($target.classList.contains('ui-datepicker-prev-btn')){
-                console.log("1");
                 datepicker.render('prev')
             }else if($target.classList.contains('ui-datepicker-next-btn')){
                 datepicker.render('next');
-                console.log("1");
             }
         }, false);
         $wrapper.addEventListener('click', function(e){
@@ -98,7 +96,7 @@
             if($target.tagName.toLowerCase() !== 'td'){
                 return;
             }
-            var date = new Date(monthData.year, monthData.month - 1, $target.dataset.date);
+            var date = new Date(monthData.year, monthData.month - 1,$target.getAttribute("data-date") || $target.dataset.date );
             $input.value = format(date);
 
             $wrapper.classList.remove('ui-datepicker-wrapper-show');
@@ -106,7 +104,7 @@
         })
     };
     function format(date){
-        ret = '';
+        var ret = '';
         var padding = function(num){
             if(num <= 9){
                 return '0' + num;
@@ -117,7 +115,6 @@
         ret += padding(date.getMonth() + 1) + '-';
         ret += padding(date.getDate());
         return ret;
-
     }
 })();
 
